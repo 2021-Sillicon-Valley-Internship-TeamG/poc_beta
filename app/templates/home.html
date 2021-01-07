@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
+  <div class="body_main">
+    <form id="img_input_form" runat="server" action="" method="post" enctype = "multipart/form-data">
+    
+    <div class="preview_div">
+      <img id="preview_img" src="../static/image/default_img.png" alt=""/>
+    </div>
 
-</body>
-</html>
+
+    <div class="form_div">
+      <input type="file" name="client_img" id="imgInput" onchange="readURL(this);">
+      <input type="submit" value="CHECK"/>
+    </div>
+
+    <div id="desc_div">
+      <p>Upload <strong>One candidate photo</strong> and click Check!!<br>
+      Then it will detect your photo</p>
+    </div>
+
+  </form>
+  </div>
+{% endblock %}
