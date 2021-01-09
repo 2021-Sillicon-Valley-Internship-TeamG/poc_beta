@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div class="result_body">
-    <h1>Insert result</h1>
+  <div>
+    <img src="{{img_url}}"/>
+  </div>
+  <div>
+    <ul>
+        {{detect_result}}
+    </ul>
   </div>
 {% endblock %}
