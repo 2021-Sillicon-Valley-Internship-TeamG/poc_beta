@@ -3,8 +3,8 @@
 import sys
 import argparse
 import requests
-from PIL import Image, ImageDraw, ImageFont
-from io import BytesIO
+# from PIL import Image, ImageDraw, ImageFont
+# from io import BytesIO
 
 #예제 URL : https://bimage.interpark.com/milti/renewPark/evtboard/20190915174947722.jpg
 
@@ -26,15 +26,17 @@ def detect_adult(image_url, image_type):
             resp = requests.post(API_URL,headers=headers,files=files)
         resp.raise_for_status()
         result = resp.json()['result']
-        if result['adult'] > result['normal'] and result['adult'] > result['soft']:
-            print ("성인 이미지일 확률이 {}% 입니다.".format(result['adult']*100))
-            return ("성인 이미지일 확률이 {}% 입니다.".format(result['adult']*100))
-        elif result['soft'] > result['normal'] and result['soft'] > result['adult']:
-            print ("노출이 포함된 이미지일 확률이 {}% 입니다.".format(result['soft']*100))
-            return ("노출이 포함된 이미지일 확률이 {}% 입니다.".format(result['soft']*100))
-        else :
-            print ("일반적인 이미지일 확률이 {}%입니다".format(result['normal']*100))
-            return ("일반적인 이미지일 확률이 {}%입니다".format(result['normal']*100))
+
+        return ("Adult Percentage : {:3f}% Soft Percentage : {:3f}% Normal Percentage {:3f}%"
+                .format(result['adult'] * 100, result['soft'] * 100, result['normal'] * 100))
+
+
+        # if result['adult'] > result['normal'] and result['adult'] > result['soft']:
+        #     return ("성인 이미지일 확률이 {}% 입니다.".format(result['adult']*100))
+        # elif result['soft'] > result['normal'] and result['soft'] > result['adult']:
+        #     return ("노출이 포함된 이미지일 확률이 {}% 입니다.".format(result['soft']*100))
+        # else :
+        #     return ("일반적인 이미지일 확률이 {}%입니다".format(result['normal']*100))
 
     except Exception as e:
         print(str(e))
