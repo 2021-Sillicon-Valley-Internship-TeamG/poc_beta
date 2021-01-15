@@ -19,6 +19,11 @@
       Then it will detect your photo</p>
     </div>
 
+    <ul class="list all db">
+      {% for item in img_url %}
+      <img src="{{item}}"/>
+      {% endfor %}
+    </ul>
   </form>
   </div>
 {% endblock %}
